@@ -1,5 +1,7 @@
 "use client";
 
+import { motion } from "framer-motion";
+import { fadeUp, stagger } from "./motion";
 import { 
   GitMerge, 
   Workflow, 
@@ -57,23 +59,30 @@ const features = [
 
 export default function KeyFeatures() {
   return (
-    <section id="features" className="py-20 bg-[#0b1022] text-white overflow-hidden">
+    <motion.section 
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-80px" }}
+      variants={stagger}
+      id="features" 
+      className="py-20 bg-[#0b1022] text-white overflow-hidden"
+    >
         <div className="container mx-auto px-6 max-w-7xl">
              <div className="mb-16 text-center">
-                <span className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient font-bold tracking-wider uppercase text-sm mb-4 block">
+                <motion.span variants={fadeUp} className="bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 bg-clip-text text-transparent bg-[length:200%_auto] animate-gradient font-bold tracking-wider uppercase text-sm mb-4 block">
                   Features
-                </span>
-                <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
+                </motion.span>
+                <motion.h2 variants={fadeUp} className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-6">
                   Every Detail, Under Control
-                </h2>
-                <p className="text-lg text-slate-400 max-w-3xl mx-auto">
+                </motion.h2>
+                <motion.p variants={fadeUp} className="text-lg text-slate-400 max-w-3xl mx-auto">
                   Purpose-built tools that match how construction projects actually move—from boardroom to job site.
-                </p>
+                </motion.p>
              </div>
              
              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {features.map((feature, idx) => (
-                    <div key={idx} className="relative h-full group">
+                    <motion.div variants={fadeUp} key={idx} className="relative h-full group">
                         {/* Animated Gradient Background Glow */}
                         <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-600 via-purple-600 to-indigo-600 rounded-2xl blur opacity-20 group-hover:opacity-75 transition duration-500 group-hover:duration-200" />
                         
@@ -100,10 +109,10 @@ export default function KeyFeatures() {
                             </div>
                         </div>
                       </div>
-                    </div>
+                    </motion.div>
                 ))}
              </div>
         </div>
-    </section>
+    </motion.section>
   );
 }
